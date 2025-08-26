@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>براعم المعرفة 🌱</title>
+  <style>
+    :root{
+      --text: #17233b;
+      --muted: #4c5b7a;
+      --card: #ffcffb;
+      --shadow: 0 10px 30px rgba(31,42,68,.08);
+      --radius: 22px;
+      --brand: #6b8cff;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Arabic", Arial, sans-serif;
+      color:var(--text);
+      background: linear-gradient(135deg, #f6f8ff, #e9f6ff, #fff5f8);
+      background-size: 240% 240%;
+      animation: floatBg 18s ease-in-out infinite;
+      transition: background 500ms ease;
+    }
+    /* خلفيات متدرجة جميلة لكل صفحة */
+    .theme-letters{background: linear-gradient(135deg,#f7f9ff,#eaf3ff,#fff7fb)}
+    .theme-numbers{background: linear-gradient(135deg,#fff7f1,#fff2d6,#ffe8f1)}
+    .theme-shapes{background: linear-gradient(135deg,#f1fff9,#e8fff4,#f1f8ff)}
+    .theme-colors{background: linear-gradient(135deg,#fff6f6,#f6fff8,#f6fbff)}
+    .theme-quiz{background: linear-gradient(135deg,#f8f6ff,#f6fffb,#fffaf2)}
+
+    @keyframes floatBg{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    header{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, #ffffffcc, #ffffff99);
+      border-bottom: 1px solid #ffffff55;
+    }
+
+    .container{max-width:1100px;margin:auto;padding:18px}
+
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:48px;height:48px;border-radius:16px;
+      background: radial-gradient(circle at 30% 30%, var(--brand), #7ed7c1);
+      box-shadow: var(--shadow);
+      display:grid;place-items:center;color:white;font-size:26px;font-weight:700;
+    }
+    h1{margin:0;font-size:clamp(22px, 3vw, 32px)}
+    .subtitle{margin-top:4px;color:var(--muted);font-size:14px}
+
+    nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .tab-btn{
+      border:none;cursor:pointer;padding:10px 14px;border-radius:14px;
+      background:#fff;box-shadow:var(--shadow);font-weight:700;
+      transition:.2s transform ease, .2s background ease;
+    }
+    .tab-btn[aria-selected="true"], .tab-btn:hover{background:linear-gradient(90deg, #fff, #f7fbff)}
+    .tab-btn:active{transform:scale(.98)}
+
+    main{padding:20px}
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+    .card{
+      background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;
+      transition:.25s transform ease;
+    }
+    .card:hover{transform:translateY(-4px)}
+    .big{font-size:48px}
+    .letter{font-size:46px;font-weight:900}
+    .num{font-size:40px;font-weight:800}
+    .label{font-size:18px;color:var(--muted);font-weight:700;text-align:center}
+
+    .toolbar{display:flex;justify-content:space-between;align-items:center;margin:6px 0 18px 0;gap:10px;flex-wrap:wrap}
+    .progress{display:flex;align-items:center;gap:8px;font-weight:700}
+
+    .panel{display:none}
+    .panel[aria-hidden="false"]{display:block}
+
+    .quiz{display:grid;gap:14px;grid-template-columns:1fr;max-width:680px}
+    .q-card{padding:16px;border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
+    .choices{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+    .choice{border:none;border-radius:14px;padding:12px;font-weight:800;cursor:pointer;box-shadow:var(--shadow);background:#fff}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 12px;border-radius:999px;background:#fff;box-shadow:var(--shadow);font-weight:700}
+
+    footer{padding:40px 0;text-align:center;color:#6b7999;font-weight:700}
+
+    img.real{width:90px;height:90px;object-fit:cover;border-radius:14px;box-shadow:var(--shadow)}
+
+    @media (max-width:520px){
+      .grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr))}
+    }
+    /* شريط بارز فوق الكروت */
+.letter{
+  font-size:28px;
+  font-weight:900;
+  color:#fff;
+  background:linear-gradient(135deg,#9b5de5,#d299ff);
+  padding:6px 12px;
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+
+.num{
+  font-size:24px;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#ff7b00,#ffb347);
+  padding:6px 12px;
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+
+.shape{
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#ff4d6d,#ff99b5);
+  padding:6px 12px;
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+
+.color{
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#00bcd4,#7dd3fc);
+  padding:6px 12px;
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+
+.quiz{
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#2d6769,#7eb9d3);
+  padding:6px 12px;
+  border-radius:14px;
+  box-shadow: var(--shadow);
+}
+
+  </style>
+</head>
+<body class="theme-letters">
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo">✦</div>
+        <div>
+          <h1>مرحبًا يا أبطال 👋</h1>
+          <div class="subtitle">تعلّم الحروف والأرقام والأشكال والألوان — بخلفيات متدرجة هادئة وصور + إيموجي</div>
+        </div>
+      </div>
+      <nav aria-label="التنقل بين الدروس">
+        <button class="tab-btn" data-tab="letters" aria-selected="true">الحروف</button>
+        <button class="tab-btn" data-tab="numbers">الأرقام</button>
+        <button class="tab-btn" data-tab="shapes">الأشكال</button>
+        <button class="tab-btn" data-tab="colors">الألوان</button>
+        <button class="tab-btn" data-tab="quiz">لعبة/اختبار ⭐</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="toolbar">
+      <div class="progress" aria-live="polite">
+        <span>النجوم: </span>
+        <strong id="stars">0</strong>
+      </div>
+      <div class="chips">
+        <span class="chip">📚 تعلم ممتع</span>
+        <span class="chip">🎨 خلفيات متدرجة</span>
+        <span class="chip">🧩 تفاعل بسيط</span>
+      </div>
+    </div>
+
+    <section id="panel-letters" class="panel" aria-hidden="false">
+      <div class="grid" id="letters-grid"></div>
+    </section>
+
+    <section id="panel-numbers" class="panel" aria-hidden="true">
+      <div class="grid" id="numbers-grid"></div>
+    </section>
+
+    <section id="panel-shapes" class="panel" aria-hidden="true">
+      <div class="grid" id="shapes-grid"></div>
+    </section>
+
+    <section id="panel-colors" class="panel" aria-hidden="true">
+      <div class="grid" id="colors-grid"></div>
+    </section>
+
+    <section id="panel-quiz" class="panel" aria-hidden="true">
+      <div class="quiz">
+        <div class="q-card">
+          <h3>اختر لون "🍌 الموز" الصحيح:</h3>
+          <div class="choices">
+            <button class="choice" data-correct="false">أحمر</button>
+            <button class="choice" data-correct="true">أصفر</button>
+            <button class="choice" data-correct="false">أزرق</button>
+          </div>
+        </div>
+        <div class="q-card">
+          <h3>أي حرف يبدأ به 🐪 جمل؟</h3>
+          <div class="choices">
+            <button class="choice" data-correct="false">ح</button>
+            <button class="choice" data-correct="true">ج</button>
+            <button class="choice" data-correct="false">د</button>
+          </div>
+        </div>
+        <div class="q-card">
+          <h3>كم عدد النجوم هنا ⭐️⭐️⭐️؟</h3>
+          <div class="choices">
+            <button class="choice" data-correct="false">2</button>
+            <button class="choice" data-correct="true">3</button>
+            <button class="choice" data-correct="false">4</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>صُنِع بحب للأطفال —  ❤️</footer>
+
+  <script>
+    // بيانات الحروف (أ → ي)
+    const lettersData = [
+      {l:'أ', word:'أرنب', emoji:'🐰', img:'https://upload.wikimedia.org/wikipedia/commons/5/53/Rabbit_in_montana.jpg'},
+      {l:'ب', word:'بطة', emoji:'🦆', img:'https://upload.wikimedia.org/wikipedia/commons/8/8f/Mallard2.jpg'},
+      {l:'ت', word:'تفاحة', emoji:'🍎', img:'https://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg'},
+      {l:'ث', word:'ثعلب', emoji:'🦊', img:'https://upload.wikimedia.org/wikipedia/commons/1/16/2012-red-fox.jpg'},
+      {l:'ج', word:'جمل', emoji:'🐪', img:'https://upload.wikimedia.org/wikipedia/commons/7/7e/Camel_portrait.JPG'},
+      {l:'ح', word:'حصان', emoji:'🐴', img:'https://upload.wikimedia.org/wikipedia/commons/4/4b/Horse_in_pasture.jpg'},
+      {l:'خ', word:'خروف', emoji:'🐑', img:'https://upload.wikimedia.org/wikipedia/commons/4/4f/Lamb_-_blackface.jpg'},
+      {l:'د', word:'دب', emoji:'🐻', img:'https://upload.wikimedia.org/wikipedia/commons/0/0b/BrownBear.jpg'},
+      {l:'ذ', word:'ذرة', emoji:'🌽', img:'https://upload.wikimedia.org/wikipedia/commons/8/8c/Corncobs.jpg'},
+      {l:'ر', word:'رمان', emoji:'🍎', img:'https://upload.wikimedia.org/wikipedia/commons/9/9b/Pomegranate03_edit.jpg'},
+      {l:'ز', word:'زرافة', emoji:'🦒', img:'https://upload.wikimedia.org/wikipedia/commons/9/9f/Giraffe_standing.jpg'},
+      {l:'س', word:'سمكة', emoji:'🐟', img:'https://upload.wikimedia.org/wikipedia/commons/0/0b/Goldfish3.jpg'},
+      {l:'ش', word:'شمس', emoji:'🌞', img:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Sunflower_sky_backdrop.jpg'},
+      {l:'ص', word:'صقر', emoji:'🦅', img:'https://upload.wikimedia.org/wikipedia/commons/0/0c/Falco_peregrinus_good_-_Christopher_Watson.jpg'},
+      {l:'ض', word:'ضفدع', emoji:'🐸', img:'https://upload.wikimedia.org/wikipedia/commons/5/58/Green_frog_sitting_on_a_log.jpg'},
+      {l:'ط', word:'طائرة', emoji:'✈️', img:'https://upload.wikimedia.org/wikipedia/commons/9/9a/Airplane_takeoff.jpg'},
+      {l:'ظ', word:'ظرف', emoji:'✉️', img:'https://upload.wikimedia.org/wikipedia/commons/0/0b/Envelope_with_stamp.jpg'},
+      {l:'ع', word:'عنب', emoji:'🍇', img:'https://upload.wikimedia.org/wikipedia/commons/4/40/Table_grapes_on_white.jpg'},
+      {l:'غ', word:'غزال', emoji:'🦌', img:'https://upload.wikimedia.org/wikipedia/commons/9/9a/Gazelle_in_Sudan.jpg'},
+      {l:'ف', word:'فيل', emoji:'🐘', img:'https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg'},
+      {l:'ق', word:'قلم', emoji:'✏️', img:'https://upload.wikimedia.org/wikipedia/commons/2/25/Pencil_closeup.jpg'},
+      {l:'ك', word:'كتاب', emoji:'📗', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Stack_of_books.jpg'},
+      {l:'ل', word:'ليمون', emoji:'🍋', img:'https://upload.wikimedia.org/wikipedia/commons/c/c5/Lemon.jpg'},
+      {l:'م', word:'منزل', emoji:'🏠', img:'https://upload.wikimedia.org/wikipedia/commons/2/2b/House_in_suburbs.jpg'},
+      {l:'ن', word:'نحلة', emoji:'🐝', img:'https://upload.wikimedia.org/wikipedia/commons/4/45/Apis_mellifera_flying.jpg'},
+      {l:'ه', word:'هرم', emoji:'🗻', img:'https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg'},
+      {l:'و', word:'وردة', emoji:'🌹', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Rose_Flower_Pink.jpg'},
+      {l:'ي', word:'يد', emoji:'🖐️', img:'https://upload.wikimedia.org/wikipedia/commons/9/98/Hand_open.jpg'}
+    ];
+
+    // الأرقام (1 → 10)
+    const numbersData = [
+      {n:1, word:'واحد', emoji:'❤️', img:'https://upload.wikimedia.org/wikipedia/commons/0/08/Heart_symbol_red_hollow.png'},
+      {n:2, word:'اثنان', emoji:'👀', img:'https://upload.wikimedia.org/wikipedia/commons/7/70/Human_eye_with_blood_vessels.jpg'},
+      {n:3, word:'ثلاثة', emoji:'❄️❄️❄️', img:'https://upload.wikimedia.org/wikipedia/commons/5/50/Snowflakes.jpg'},
+      {n:4, word:'أربعة', emoji:'🍀🍀', img:'https://upload.wikimedia.org/wikipedia/commons/5/55/Four-leaf_clover_4.jpg'},
+      {n:5, word:'خمسة', emoji:'⭐️⭐️⭐️⭐️⭐️', img:'https://upload.wikimedia.org/wikipedia/commons/8/8e/Starsinthesky.jpg'},
+      {n:6, word:'ستة', emoji:'🎲', img:'https://upload.wikimedia.org/wikipedia/commons/1/19/Dice-6-b.svg'},
+      {n:7, word:'سبعة', emoji:'🌈', img:'https://upload.wikimedia.org/wikipedia/commons/6/6e/Rainbow_observed_over_the_sky.jpg'},
+      {n:8, word:'ثمانية', emoji:'🐙', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Octopus2.jpg'},
+      {n:9, word:'تسعة', emoji:'🐱🐱🐱', img:'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg'},
+      {n:10, word:'عشرة', emoji:'🖐️🖐️', img:'https://upload.wikimedia.org/wikipedia/commons/9/98/Hand_open.jpg'}
+    ];
+
+    // الأشكال
+    const shapesData = [
+      {name:'دائرة', emoji:'⚪', img:'https://upload.wikimedia.org/wikipedia/commons/e/e5/Circle_-_black_simple.svg'},
+      {name:'مربع', emoji:'⬜', img:'https://upload.wikimedia.org/wikipedia/commons/9/99/Simple_square_icon.png'},
+      {name:'مثلث', emoji:'🔺', img:'https://upload.wikimedia.org/wikipedia/commons/6/6f/Blue_triangle.png'},
+      {name:'مستطيل', emoji:'▭', img:'https://upload.wikimedia.org/wikipedia/commons/9/9f/Simple_rectangle.png'},
+      {name:'نجمة', emoji:'⭐️', img:'https://upload.wikimedia.org/wikipedia/commons/5/53/Star_empty.svg'},
+      {name:'قلب', emoji:'❤️', img:'https://upload.wikimedia.org/wikipedia/commons/3/36/Heart_coraz%C3%B3n.svg'}
+    ];
+
+    // الألوان (10 ألوان أساسية)
+    const colorsData = [
+      {name:'أحمر', emoji:'🍎', img:'https://upload.wikimedia.org/wikipedia/commons/f/f4/Red_Apple.jpg'},
+      {name:'أزرق', emoji:'🫐', img:'https://upload.wikimedia.org/wikipedia/commons/1/1d/Blueberries_.jpg'},
+      {name:'أخضر', emoji:'🥦', img:'https://upload.wikimedia.org/wikipedia/commons/a/a5/Broccoli_close_up.jpg'},
+      {name:'أصفر', emoji:'🌻', img:'https://upload.wikimedia.org/wikipedia/commons/4/4c/Sunflower_sky_backdrop.jpg'},
+      {name:'برتقالي', emoji:'🍊', img:'https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg'},
+      {name:'بنفسجي', emoji:'🌸', img:'https://upload.wikimedia.org/wikipedia/commons/6/6d/Purple_Flowers.jpg'},
+      {name:'وردي', emoji:'🌷', img:'https://upload.wikimedia.org/wikipedia/commons/6/6b/Pink_rose.jpg'},
+      {name:'أسود', emoji:'⚫', img:'https://upload.wikimedia.org/wikipedia/commons/5/5e/Black_cat_-_Lincoln.jpg'},
+      {name:'أبيض', emoji:'❄️', img:'https://upload.wikimedia.org/wikipedia/commons/0/0a/Snow_white_landscape.jpg'},
+      {name:'بني', emoji:'🍫', img:'https://upload.wikimedia.org/wikipedia/commons/7/70/Chocolate_%28blue_tentacle%29.jpg'}
+    ];
+
+    // مولد بطاقة عامة
+    function makeCard({titleTop, img, emoji, label, topClass}){
+      const art = document.createElement('article');
+      art.className = 'card';
+      if(topClass){
+        const top = document.createElement('div');
+        top.className = topClass;
+        top.textContent = titleTop;
+        art.appendChild(top);
+      }
+      const image = document.createElement('img');
+      image.className = 'real';
+      image.loading = 'lazy';
+      image.alt = label;
+      image.src = img;
+      art.appendChild(image);
+
+      const big = document.createElement('div');
+      big.className='big';
+      big.textContent = emoji;
+      art.appendChild(big);
+
+      const lab = document.createElement('div');
+      lab.className='label';
+      lab.textContent = label;
+      art.appendChild(lab);
+
+      return art;
+    }
+
+    // رسم القوائم
+    const lettersGrid = document.getElementById('letters-grid');
+    lettersData.forEach(it=>lettersGrid.appendChild(makeCard({titleTop:it.l, img:it.img, emoji:it.emoji, label:`${it.l} — ${it.word}`, topClass:'letter'})));
+
+    const numbersGrid = document.getElementById('numbers-grid');
+    numbersData.forEach(it=>numbersGrid.appendChild(makeCard({titleTop:it.n, img:it.img, emoji:it.emoji, label:it.word, topClass:'num'})));
+
+    const shapesGrid = document.getElementById('shapes-grid');
+    shapesData.forEach(it=>shapesGrid.appendChild(makeCard({titleTop:'', img:it.img, emoji:it.emoji, label:it.name})));
+
+    const colorsGrid = document.getElementById('colors-grid');
+    colorsData.forEach(it=>colorsGrid.appendChild(makeCard({titleTop:'', img:it.img, emoji:it.emoji, label:it.name})));
+
+    // تنقّل بين الصفحات (أزرار + hash routing) مع تغيير الخلفية
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = {
+      letters: document.getElementById('panel-letters'),
+      numbers: document.getElementById('panel-numbers'),
+      shapes: document.getElementById('panel-shapes'),
+      colors: document.getElementById('panel-colors'),
+      quiz: document.getElementById('panel-quiz')
+    };
+
+    function activate(tab){
+      Object.entries(panels).forEach(([key,el])=> el.setAttribute('aria-hidden', key!==tab));
+      tabs.forEach(b=> b.setAttribute('aria-selected', b.dataset.tab===tab));
+      document.body.className = 'theme-' + tab; // يغيّر الخلفية المتدرجة حسب الصفحة
+      location.hash = tab;
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    tabs.forEach(btn=>btn.addEventListener('click', ()=>activate(btn.dataset.tab)));
+
+    window.addEventListener('hashchange', ()=>{
+      const tab = location.hash.replace('#','');
+      if(panels[tab]) activate(tab);
+    });
+    if(location.hash){
+      const tab = location.hash.replace('#','');
+      if(panels[tab]) activate(tab);
+    }
+
+    // نجوم بسيطة محفوظة محليًا
+    const starsEl = document.getElementById('stars');
+    const getStars = ()=> Number(localStorage.getItem('kids_stars') || '0');
+    const setStars = (n)=> localStorage.setItem('kids_stars', String(n));
+    const addStar = (n=1)=>{ const v=getStars()+n; setStars(v); starsEl.textContent=v };
+    starsEl.textContent = getStars();
+
+    // التفاعل مع أسئلة الاختبار
+    document.querySelectorAll('.choice').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const correct = btn.dataset.correct === 'true';
+        btn.style.transform = 'scale(.98)';
+        btn.style.background = correct ? 'linear-gradient(90deg,#e8fff5,#ffffff)' : 'linear-gradient(90deg,#fff0f0,#ffffff)';
+        if(correct){
+          addStar(1);
+          const confetti = document.createElement('div');
+          confetti.textContent = '🎉 أحسنت!';
+          confetti.style.position='fixed';
+          confetti.style.inset='auto 0 20px 0';
+          confetti.style.margin='auto';
+          confetti.style.background='#ffffffcc';
+          confetti.style.padding='10px 16px';
+          confetti.style.borderRadius='999px';
+          confetti.style.textAlign='center';
+          confetti.style.boxShadow='var(--shadow)';
+          confetti.style.width='max-content';
+          document.body.appendChild(confetti);
+          setTimeout(()=>confetti.remove(), 1200);
+        }
+      })
+    })
+  </script>
+</body>
+</html>
